@@ -5,6 +5,9 @@
 #include <ctype.h>
 
 #define CAPACITY 128
+#define PASSED(word) (printf("\n\nYour word '%s' is a palindrome\n\n", word))
+#define FAILED(word) (printf("\n\nYour word '%s' is not a palindrome\n\n", word)
+
 
 bool testing();
 void test();
@@ -40,13 +43,7 @@ void runProgram()
 		right = (strlen(cleaned) - 1) + left;
 	}
 
-	if (isPalindrome(left, right))
-	{
-		printf("Palindrome");
-	}
-	else {
-		printf("Not a palindrome");
-	}
+	isPalindrome(left, right) ? PASSED(cleaned) : FAILED(cleaned));
 
 }
 
