@@ -21,7 +21,11 @@ int main()
 	clean_input(input, cleaned);
 
 	char* left = cleaned;
-	char* right = (strlen(cleaned) - 1) + 1;
+	char* right = NULL;
+	if (cleaned != NULL)
+	{
+		right = (strlen(cleaned) - 1) + left;
+	}
 
 	if (isPalindrome(left, right))
 	{
