@@ -1,3 +1,12 @@
+/***************************************************************
+
+Name:		palindrome.c
+Purpose:	Determine is user-input (string) is a palindrome
+Author:		C. Mendrella
+Date:		04/30/2022 (Spring 22)
+
+****************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
