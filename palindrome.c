@@ -9,6 +9,7 @@
 bool testing();
 void test();
 
+void runProgram();
 int get_input(char*);
 int clean_input(char*, char*);
 bool isPalindrome(char*, char*);
@@ -17,34 +18,35 @@ bool isPalindrome(char*, char*);
 int main() 
 {
 
-	if (testing()) {
-		test();
+	testing() ? test() : runProgram();
+
+	return 0;
+
+}
+
+/* Runs program is not debuggin */
+void runProgram()
+{
+	char* input = calloc(CAPACITY, sizeof(char));
+	char* cleaned = calloc(CAPACITY, sizeof(char));
+
+	get_input(input);
+	clean_input(input, cleaned);
+
+	char* left = cleaned;
+	char* right = NULL;
+	if (cleaned != NULL)
+	{
+		right = (strlen(cleaned) - 1) + left;
+	}
+
+	if (isPalindrome(left, right))
+	{
+		printf("Palindrome");
 	}
 	else {
-
-
-		char* input = calloc(CAPACITY, sizeof(char));
-		char* cleaned = calloc(CAPACITY, sizeof(char));
-
-		get_input(input);
-		clean_input(input, cleaned);
-
-		char* left = cleaned;
-		char* right = NULL;
-		if (cleaned != NULL)
-		{
-			right = (strlen(cleaned) - 1) + left;
-		}
-
-		if (isPalindrome(left, right))
-		{
-			printf("Palindrome");
-		}
-		else {
-			printf("Not a palindrome");
-		}
+		printf("Not a palindrome");
 	}
-	return 0;
 
 }
 
