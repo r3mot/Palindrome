@@ -4,18 +4,19 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-#define CAPACITY 128
 #define PASSED(word) (printf("\n\nYour word '%s' is a palindrome\n\n", word))
 #define FAILED(word) (printf("\n\nYour word '%s' is not a palindrome\n\n", word)
 
+#define CAPACITY 128
 
-bool testing();
-void test();
 
-void runProgram();
-int get_input(char*);
-int clean_input(char*, char*);
-bool isPalindrome(char*, char*);
+bool testing();																	// debug
+void test();																	// debug
+
+void runProgram();																// If we're not debugging, run normal program
+int  get_input(char*);															// Get user-input, store values in memory
+int  clean_input(char*, char*);													// Remove spaces & special characters
+bool isPalindrome(char*, char*);												// Checks if user-input is a palindrome
 
 /* Start of main program */
 int main() 
@@ -27,27 +28,32 @@ int main()
 
 }
 
-/* Runs program is not debuggin */
 void runProgram()
 {
-	char* input = calloc(CAPACITY, sizeof(char));
+	char* input   = calloc(CAPACITY, sizeof(char));								// Using calloc to zero memory
 	char* cleaned = calloc(CAPACITY, sizeof(char));
 
 	get_input(input);
 	clean_input(input, cleaned);
 
-	char* left = cleaned;
+	char* left  = cleaned;
 	char* right = NULL;
-	if (cleaned != NULL)
+
+	if(cleaned != NULL)															// Ensures we're not setting the right pointer to 0
 	{
 		right = (strlen(cleaned) - 1) + left;
 	}
 
 	isPalindrome(left, right) ? PASSED(cleaned) : FAILED(cleaned));
 
+	free(input);																// Free memory
+	free(cleaned);
+
+	input = NULL;																// Handle dangling pointer
+	cleaned = NULL;
+
 }
 
-/* Reads user-input */
 int get_input(char* input) 
 {
 
@@ -65,54 +71,53 @@ int get_input(char* input)
 		}
 		ch = getchar();
 	}
+
 	input[i] = '\0';
 	return i;
 }
 
-/* Removes spaces & special characters from user-input */
 int clean_input(char* input, char* cleaned) 
 {
 	int i, j = 0;
 
 	for (i = 0; i < strlen(input); i++) 
 	{
-		if ((!isspace(input[i])) && isalpha(input[i]))
-		{
+		if ((!isspace(input[i])) && isalpha(input[i]))							// If the character is not a space or non alphabet character
+		{																		// Add it to the clean array
 			cleaned[j] = tolower(input[i]);
 			j++;
 		}
 	}
+
 	return j;
 }
 
-/* Checks if input is a palindrome */
 bool isPalindrome(char* left, char* right) 
 {
-	while (left <= right)
+	while (left <= right)														
 	{
-		if (*left != *right)
+		if (*left != *right)													// If the value of left and right pointer aren't equal, not palindrome
 		{
 			return false;
 		}
 
-		left++;
-		right--;
+		left++;																	// Move pointer to the right (until it's collided with left ptr)
+		right--;																// Move pointer to the left (until it's collided with right ptr)
 	}
 
 	return true;
 }
 
-/* For debug */
 bool testing()
 {
-	printf("Would you like to test the program? (y / n) ");
 	char answer;
+
+	printf("Would you like to test the program? (y / n) ");
 	scanf("%c", &answer);
 
 	return tolower(answer) == 'y';
 }
 
-/* Debug - Tests multiple cases of palindromes */
 void test()
 {
 	printf("\n\n. . . Testing . . . \n\n");
