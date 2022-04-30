@@ -10,13 +10,13 @@
 #define CAPACITY 128
 
 
-bool testing();																	// debug
-void test();																	// debug
+bool testing();								// debug
+void test();								// debug
 
-void runProgram();																// If we're not debugging, run normal program
-int  get_input(char*);															// Get user-input, store values in memory
-int  clean_input(char*, char*);													// Remove spaces & special characters
-bool isPalindrome(char*, char*);												// Checks if user-input is a palindrome
+void runProgram();							// If we're not debugging, run normal program
+int  get_input(char*);						// Get user-input, store values in memory
+int  clean_input(char*, char*);				// Remove spaces & special characters
+bool isPalindrome(char*, char*);			// Checks if user-input is a palindrome
 
 /* Start of main program */
 int main() 
