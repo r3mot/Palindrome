@@ -8,6 +8,7 @@
 
 int get_input(char*);
 int clean_input(char*, char*);
+bool isPalindrome(char*, char*);
 
 /* Start of main program */
 int main() 
@@ -18,6 +19,17 @@ int main()
 
 	get_input(input);
 	clean_input(input, cleaned);
+
+	char* left = cleaned;
+	char* right = (strlen(cleaned) - 1) + 1;
+
+	if (isPalindrome(left, right))
+	{
+		printf("Palindrome");
+	}
+	else {
+		printf("Not a palindrome");
+	}
 
 	return 0;
 
@@ -59,4 +71,21 @@ int clean_input(char* input, char* cleaned)
 		}
 	}
 	return j;
+}
+
+/* Checks if input is a palindrome */
+bool isPalindrome(char* left, char* right) 
+{
+	while (left <= right)
+	{
+		if (*left != *right)
+		{
+			return false;
+		}
+
+		left++;
+		right--;
+	}
+
+	return true;
 }
